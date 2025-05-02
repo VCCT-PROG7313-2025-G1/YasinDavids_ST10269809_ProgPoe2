@@ -6,7 +6,9 @@ plugins {
 android {
     namespace = "com.example.prog_7313_poe"
     compileSdk = 35
-
+    viewBinding {
+        enable = true
+    }
     defaultConfig {
         applicationId = "com.example.prog_7313_poe"
         minSdk = 35
