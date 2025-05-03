@@ -52,6 +52,9 @@ Steps
 
 AI tools were used to assist with code, debugging, and documentation in this project.
 
+## Demo vid
+
+https://youtu.be/g7qHWX4X8yI 
 ## References:
 
 - Google (2019). Save data in a local database using Room  |  Android Developers. [online] Android Developers. Available at: https://developer.android.com/training/data-storage/room.
