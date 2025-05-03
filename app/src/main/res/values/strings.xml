@@ -7,4 +7,10 @@
         <item>Bank</item>
         <item>Credit Card</item>
     </string-array>
+    <string-array name="section_options">
+        <item>Bills</item>
+        <item>Monthly Needs</item>
+        <item>Wants and Miscellaneous</item>
+    </string-array>
+
 </resources>

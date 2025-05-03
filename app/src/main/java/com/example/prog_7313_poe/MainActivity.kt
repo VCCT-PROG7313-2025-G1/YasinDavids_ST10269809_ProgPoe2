@@ -2,7 +2,6 @@ package com.example.prog_7313_poe
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-<<<<<<< HEAD
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.content.Intent
@@ -15,27 +14,25 @@ import com.example.prog_7313_poe.data.AppDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-=======
->>>>>>> main
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-<<<<<<< HEAD
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-=======
-
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, AddTransaction())
-                .commit()
->>>>>>> main
-        }
+//<<<<<<< HEAD
+//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+//            insets
+//
+//        if (savedInstanceState == null) {
+//            supportFragmentManager.beginTransaction()
+//                .replace(R.id.container, AddTransaction())
+//                .commit()
+//>>>>>>> main
+//        }
 
         val emailInput = findViewById<EditText>(R.id.edt_Email)
         val passwordInput = findViewById<EditText>(R.id.edt_Pass)
@@ -56,8 +53,10 @@ class MainActivity : AppCompatActivity() {
                     if (user != null) {
                         Toast.makeText(this@MainActivity, "Welcome, ${user.name}", Toast.LENGTH_LONG).show()
 
-                        // TEMP: Send back to this screen for now
-                        val intent = Intent(this@MainActivity, MainActivity::class.java)
+
+                        // Navigate to the Dashboard page
+                        val intent = Intent(this@MainActivity, Dashboard::class.java)
+
                         startActivity(intent)
                         finish()
                     } else {

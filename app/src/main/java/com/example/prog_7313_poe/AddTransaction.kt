@@ -1,14 +1,21 @@
 package com.example.prog_7313_poe
 
 // imports
+import android.app.Activity
 import android.app.DatePickerDialog
+import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.prog_7313_poe.databinding.FragmentAddTransactionBinding
 import java.text.SimpleDateFormat
@@ -17,14 +24,65 @@ import java.util.Locale
 
 
 class AddTransaction : Fragment(R.layout.fragment_add_transaction) {
-
+    companion object {
+        private const val REQUEST_IMAGE_CAPTURE = 1
+    }
     private var _binding: FragmentAddTransactionBinding? = null
     private val binding get() = _binding!!
+    private val takePictureLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val imageBitmap = result.data?.extras?.get("data") as? Bitmap
+            imageBitmap?.let {
+
+                Toast.makeText(requireContext(), "Image captured successfully", Toast.LENGTH_SHORT).show()
+
+            }
+        }
+    }
+
+    private val CAMERA_PERMISSION_CODE = 100
+
+    // Add this function to check and request permissions
+    private fun checkCameraPermission() {
+        if (requireContext().checkSelfPermission(android.Manifest.permission.CAMERA) != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+            // Permission not granted, request it
+            requestPermissions(arrayOf(android.Manifest.permission.CAMERA), CAMERA_PERMISSION_CODE)
+        } else {
+            // Permission already granted, open camera
+            openCamera()
+        }
+    }
+
+    // Handle the permission result
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == CAMERA_PERMISSION_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                // Permission granted, open camera
+                openCamera()
+            } else {
+                // Permission denied
+                Toast.makeText(requireContext(), "Camera permission is required to take photos", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    // Function to open camera
+    private fun openCamera() {
+        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        takePictureLauncher.launch(takePictureIntent)
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentAddTransactionBinding.bind(view)
 
+        val takePhotoBtn = view.findViewById<Button>(R.id.btnTakePhoto)
+
+        takePhotoBtn.setOnClickListener {
+            checkCameraPermission() // Use the permission check method instead of directly launching
+        }
 
         // ------------------------------- DATE INPUT --------------------------------------
 
