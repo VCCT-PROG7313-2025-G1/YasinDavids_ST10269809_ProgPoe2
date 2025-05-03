@@ -14,10 +14,14 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import com.example.prog_7313_poe.data.AppDatabase
 import com.example.prog_7313_poe.databinding.FragmentAddTransactionBinding
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -29,6 +33,12 @@ class AddTransaction : Fragment(R.layout.fragment_add_transaction) {
     }
     private var _binding: FragmentAddTransactionBinding? = null
     private val binding get() = _binding!!
+
+
+
+
+    // --------------------------------------------------------------------
+
     private val takePictureLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             val imageBitmap = result.data?.extras?.get("data") as? Bitmap
@@ -77,6 +87,48 @@ class AddTransaction : Fragment(R.layout.fragment_add_transaction) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentAddTransactionBinding.bind(view)
+
+        // --------------- CATEGORY SPINNER ---------------------
+
+        val categorySpinner = view.findViewById<Spinner>(R.id.categorySelect)
+
+        lifecycleScope.launch {
+            val categoryDao = AppDatabase.getDatabase(requireContext()).categoryDao()
+            val categoryNames = categoryDao.getAllCategoryNames()
+
+            val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, categoryNames)
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            categorySpinner.adapter = adapter
+        }
+
+        // SAVE BUTTON ACTION
+        val saveButton = view.findViewById<Button>(R.id.save_income_category_btn)
+        saveButton.setOnClickListener {
+            val incomeAmount = binding.incomeAmount.text.toString().toDoubleOrNull() // Get income amount
+            if (incomeAmount != null) {
+                val selectedCategory = categorySpinner.selectedItem.toString() // Get selected category
+
+                // Insert into goal_progress table
+                lifecycleScope.launch {
+                    val categoryDao = AppDatabase.getDatabase(requireContext()).categoryDao()
+
+                    // Get the category by name
+                    val category = categoryDao.getCategoryByName(selectedCategory)
+                    if (category != null) {
+                        // Update goal progress for the selected category
+                        categoryDao.updateGoalProgress(selectedCategory, incomeAmount)
+                        Toast.makeText(requireContext(), "Goal progress updated successfully", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(requireContext(), "Category not found", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } else {
+                Toast.makeText(requireContext(), "Please enter a valid income amount", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
+        // --------------------------- PHOTO BUTTON _----------
 
         val takePhotoBtn = view.findViewById<Button>(R.id.btnTakePhoto)
 

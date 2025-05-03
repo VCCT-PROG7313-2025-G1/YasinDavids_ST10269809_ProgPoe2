@@ -18,4 +18,13 @@ interface CategoryDao {
 
     @Query("SELECT * FROM categories WHERE section = :section")
     suspend fun getCategoriesBySection(section: String): List<Category>
+
+    @Query("SELECT name FROM categories")
+    suspend fun getAllCategoryNames(): List<String>
+
+    @Query("SELECT * FROM categories WHERE name = :categoryName LIMIT 1")
+    suspend fun getCategoryByName(categoryName: String): Category?
+
+    @Query("UPDATE categories SET goal_progress = :newGoalProgress WHERE name = :categoryName")
+    suspend fun updateGoalProgress(categoryName: String, newGoalProgress: Double)
 }
