@@ -49,6 +49,22 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
 
+        //Migration from 3-4
+        val MIGRATION_3_4 = object : Migration(3, 4) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                // Create the Account table for version 4
+                db.execSQL("""
+            CREATE TABLE IF NOT EXISTS `Account` (
+                `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                `type` TEXT NOT NULL,
+                `name` TEXT NOT NULL,
+                `startingAmount` REAL NOT NULL,
+                `notes` TEXT
+            )
+        """)
+            }
+        }
+
         fun getDatabase(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
@@ -57,7 +73,7 @@ abstract class AppDatabase : RoomDatabase() {
                     "my_app_db"
                 )
                    // .fallbackToDestructiveMigration() // to update database to version 2,I commented out for now because im unsure if the database will break
-                    .addMigrations(MIGRATION_2_3)
+                    .addMigrations(MIGRATION_2_3, MIGRATION_3_4)
                     .build()
                 INSTANCE = instance
                 instance
