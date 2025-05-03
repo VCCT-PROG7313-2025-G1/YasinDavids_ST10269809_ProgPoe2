@@ -113,7 +113,6 @@
                     android:background="#20FFFFFF"
                     android:inputType="numberDecimal"
                     android:paddingStart="8dp"
-                    android:text="R"
                     android:textColor="#80FFFFFF"
                     android:textSize="16sp" />
 
@@ -190,26 +189,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp" />
 
-                <!-- Description input-->
-                <TextView
-                    android:id="@+id/incomeDescripText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Description"
-                    android:textColor="#90FFFFFF"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/incomeDescription"
-                    android:layout_width="match_parent"
-                    android:layout_height="90dp"
-                    android:background="#20FFFFFF"
-                    android:inputType="numberDecimal"
-                    />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp" />
 
                 <Button
                     android:id="@+id/save_income_category_btn"
@@ -307,26 +286,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp" />
 
-                <!-- Description input-->
-                <TextView
-                    android:id="@+id/expenseDescripText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Description"
-                    android:textColor="#90FFFFFF"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/expenseDescription"
-                    android:layout_width="match_parent"
-                    android:layout_height="90dp"
-                    android:background="#20FFFFFF"
-                    android:inputType="numberDecimal"
-                    />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp" />
 
 
                 <Button
