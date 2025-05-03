@@ -8,13 +8,14 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
 @Database(
-    entities = [User::class, Category::class], // Added Category
-    version = 3, // Make sure this is greater than your previous version
+    entities = [User::class, Category::class, Account::class], // Added Category
+    version = 4, // Make sure this is greater than your previous version
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun categoryDao(): CategoryDao // New DAO
+    abstract fun accountDao(): AccountDao
 
     companion object {
         @Volatile
@@ -34,7 +35,7 @@ abstract class AppDatabase : RoomDatabase() {
                     )
                 """)
 
-                // Copy the data from the old table to the temporary table
+                // Copy the data from the old table to the temporary table..
                 db.execSQL("""
                     INSERT INTO categories_temp (id, name, section, goal, goal_progress)
                     SELECT id, name, section, goal, goal_progress FROM categories

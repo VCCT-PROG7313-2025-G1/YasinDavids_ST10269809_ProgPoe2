@@ -64,6 +64,52 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
+
+//<<<<<<< HEAD
+//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+//            insets
+//
+//        if (savedInstanceState == null) {
+//            supportFragmentManager.beginTransaction()
+//                .replace(R.id.container, AddTransaction())
+//                .commit()
+//>>>>>>> main
+//        }
+
+        val emailInput = findViewById<EditText>(R.id.edt_Email)
+        val passwordInput = findViewById<EditText>(R.id.edt_Pass)
+        val loginButton = findViewById<Button>(R.id.btn_Login)
+
+        loginButton.setOnClickListener {
+            val email = emailInput.text.toString().trim()
+            val password = passwordInput.text.toString().trim()
+
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show()
+            } else {
+                lifecycleScope.launch {
+                    val user = withContext(Dispatchers.IO) {
+                        AppDatabase.getDatabase(applicationContext).userDao().login(email, password)
+                    }
+
+                    if (user != null) {
+                        Toast.makeText(this@MainActivity, "Welcome, ${user.name}", Toast.LENGTH_LONG).show()
+
+                        val sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+                        sharedPreferences.edit().putString("email", user.email).apply()
+
+                        // Navigate to the Dashboard page
+                        val intent = Intent(this@MainActivity, Dashboard::class.java)
+
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        Toast.makeText(this@MainActivity, "Email or password incorrect", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
         }
 
         val forgotPasswordText = findViewById<TextView>(R.id.txt_Fpass)
@@ -78,5 +124,4 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
 }

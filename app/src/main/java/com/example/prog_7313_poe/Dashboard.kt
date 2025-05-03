@@ -25,6 +25,9 @@ class Dashboard : AppCompatActivity() {
         val homeTextView = findViewById<TextView>(R.id.home_text_view)
         val transactionTextView = findViewById<TextView>(R.id.transaction_text_view)
         val categoryTextView = findViewById<TextView>(R.id.category_text_view)
+        val addAccountsTextView = findViewById<TextView>(R.id.txt_account)
+        val reportsTextView = findViewById<TextView>(R.id.txt_reports)
+        val settingsTextView = findViewById<TextView>(R.id.txt_settings)
         // Set an OnClickListener for the TextView
         homeTextView.setOnClickListener {
             // Replace current fragment with ViewCategories when the TextView is clicked
@@ -58,6 +61,40 @@ class Dashboard : AppCompatActivity() {
             transaction.commit()
 
         }
+
+        addAccountsTextView.setOnClickListener {
+            // Replace current fragment with AddTransaction when the TextView is clicked
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(
+                R.id.container,
+                AddAccount()
+            )
+            transaction.commit()
+
+        }
+
+            reportsTextView.setOnClickListener {
+                // Replace current fragment with AddTransaction when the TextView is clicked
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(
+                    R.id.container,
+                    Reports()
+                )
+                transaction.commit()
+
+            }
+
+            settingsTextView.setOnClickListener {
+                // Replace current fragment with AddTransaction when the TextView is clicked
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(
+                    R.id.container,
+                    AppSettings()
+                )
+                transaction.commit()
+
+            }
+
 
     }
 }
