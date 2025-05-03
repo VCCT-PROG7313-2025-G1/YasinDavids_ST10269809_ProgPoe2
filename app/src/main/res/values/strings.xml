@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Prog_7313_POE</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="account_options">
+        <item>Cash</item>
+        <item>Bank</item>
+        <item>Credit Card</item>
+    </string-array>
+    <string-array name="section_options">
+        <item>Bills</item>
+        <item>Monthly Needs</item>
+        <item>Wants and Miscellaneous</item>
+    </string-array>
+
+</resources>

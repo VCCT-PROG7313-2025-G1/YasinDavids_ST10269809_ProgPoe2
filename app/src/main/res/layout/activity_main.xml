@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
+            android:background="@color/headerGreen" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:background="@color/bannerGreen">
+
+            <TextView
+                android:id="@+id/txt_resetPass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Sign In"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="186dp"
+            android:layout_height="186dp"
+            app:srcCompat="@drawable/logo" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btn_Login"
+                android:layout_width="116dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="252dp"
+                android:layout_marginBottom="92dp"
+                android:backgroundTint="@color/bannerGreen"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Login"
+                android:textSize="12sp"
+                app:cornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/txt_newPassRepeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="62dp"
+                android:layout_marginBottom="9dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Email Address"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/edt_Email"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/txt_Pass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="62dp"
+                android:layout_marginEnd="264dp"
+                android:layout_marginBottom="6dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Password"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/edt_Pass"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/edt_Email"
+                android:layout_width="289dp"
+                android:layout_height="41dp"
+                android:layout_marginStart="62dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginBottom="32dp"
+                android:background="@drawable/rounded_edittext"
+                android:ems="10"
+                android:inputType="text"
+                app:layout_constraintBottom_toTopOf="@+id/txt_Pass"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/edt_Pass"
+                android:layout_width="289dp"
+                android:layout_height="41dp"
+                android:layout_marginStart="62dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/rounded_edittext"
+                android:ems="10"
+                android:inputType="text"
+                app:layout_constraintBottom_toTopOf="@+id/txt_acc"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/txt_Fpass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="62dp"
+                android:layout_marginBottom="186dp"
+                android:clickable="true"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Forgot password?"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/txt_acc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="60dp"
+                android:layout_marginBottom="40dp"
+                android:clickable="true"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Don't have an account?"
+                android:textSize="12dp"
+                app:layout_constraintBottom_toTopOf="@+id/btn_Login"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+</FrameLayout>

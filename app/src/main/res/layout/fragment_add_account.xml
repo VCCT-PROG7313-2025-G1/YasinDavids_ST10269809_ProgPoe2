@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddAccount">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="#344E41">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#588157"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp"
+        android:text="Add Account"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="375dp"
+        android:layout_height="462dp"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="11dp"
+        card_view:cardBackgroundColor="#344E41"
+        card_view:cardCornerRadius="16dp"
+        card_view:cardElevation="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="413dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <!-- Name input-->
+            <TextView
+                android:id="@+id/txt_accountType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Account type"
+                android:textColor="#90FFFFFF"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/accountTypeSelect"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="#20FFFFFF"
+                android:paddingStart="8dp"
+                android:textColor="#80FFFFFF" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+            <!-- Account input-->
+            <TextView
+                android:id="@+id/txt_accountName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Account Name"
+                android:textColor="#90FFFFFF"
+                android:textStyle="bold" />
+
+
+            <EditText
+                android:id="@+id/edt_accountName"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="#20FFFFFF"
+                android:inputType="text"
+                android:paddingStart="8dp"
+                android:text=""
+                android:textColor="#80FFFFFF"
+                android:textSize="16sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+            <!-- Goal input-->
+            <TextView
+                android:id="@+id/txt_startingAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Starting Amount"
+                android:textColor="#90FFFFFF"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edt_startingAmount"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="#20FFFFFF"
+                android:inputType="numberDecimal"
+                android:paddingStart="8dp"
+                android:text=""
+                android:textColor="#80FFFFFF"
+                android:textSize="16sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+            <TextView
+                android:id="@+id/txt_notes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Notes"
+                android:textColor="#90FFFFFF"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edt_notes"
+                android:layout_width="match_parent"
+                android:layout_height="129dp"
+                android:background="#20FFFFFF"
+                android:inputType="text"
+                android:paddingStart="8dp"
+                android:text=""
+                android:textColor="#80FFFFFF"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/btn_confirmAccount"
+        android:layout_width="116dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="276dp"
+        android:layout_marginBottom="140dp"
+        android:backgroundTint="@color/bannerGreen"
+        android:fontFamily="@font/inter_semibold"
+        android:text="Add"
+        android:textSize="12sp" />
+
+</LinearLayout>
